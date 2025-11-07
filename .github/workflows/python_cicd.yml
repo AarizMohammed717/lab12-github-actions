@@ -1,0 +1,38 @@
+name: Python CI/CD
+
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          
+      - name: Install dependencies
+        run: |
+          echo "Mocking installation of dependencies..."
+          python -m pip install --upgrade pip
+          pip install pytest
+          
+      - name: Run tests
+        run: |
+          echo "Running unit tests..."
+          echo "Tests passed successfully."
+          
+      - name: Deployment Stage Mock
+        run: |
+          echo "Deployment started..."
+          echo "Packaging application..."
+          echo "Deploying mock app to staging environment."
+          echo "Deployment successful."
