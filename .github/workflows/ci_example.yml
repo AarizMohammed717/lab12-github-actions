@@ -1,0 +1,28 @@
+name: Basic CI Example
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Run a simple greeting script
+        run: |
+          echo "Starting the CI job on runner ${{ runner.os }}"
+          echo "Hello, GitHub Actions!"
+          
+      - name: Show Node.js version (Example of a reusable action)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Verify Node is installed
+        run: node -v
